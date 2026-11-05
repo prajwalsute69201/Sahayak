@@ -1,0 +1,16 @@
+/* Sahayak Shadow DOM Badges styling */
+.sahayak-badge {
+  position: absolute;
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  user-select: none;
+}

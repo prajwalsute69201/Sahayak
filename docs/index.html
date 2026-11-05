@@ -1,0 +1,1105 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sahayak (सहायक) is a context-aware Chrome Extension MV3 assistant that reads, explains, and acts under strict Human-In-The-Loop approval. Zero telemetry, local-first memory, and deterministic safety rails."
+    />
+    <meta
+      name="keywords"
+      content="Chrome Extension, AI Agent, Human-in-the-Loop, Gemini, Groq, Manifest V3, Web Summarizer, Hinglish AI"
+    />
+    <meta name="author" content="Sahayak Team" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sahayak — User-Controlled, Context-Aware Browser Agent" />
+    <meta
+      property="og:description"
+      content="Understand pages, find what matters, and handle everyday browser tasks with an AI companion that keeps you in control."
+    />
+    <meta property="og:image" content="assets/logo.png" />
+    <meta property="og:url" content="https://sahayak.local" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sahayak — User-Controlled Browser Agent" />
+    <meta
+      name="twitter:description"
+      content="Browser tasks executed under strict human approval. Zero telemetry, local memory, and code-level safety gating."
+    />
+    <meta name="twitter:image" content="assets/logo.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/icon-16.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="assets/icons/icon-128.png" />
+
+    <title>Sahayak (सहायक) — User-Controlled, Context-Aware Browser Agent</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-glow"></div>
+
+    <!-- ========================================================================
+       Navigation Bar
+       ======================================================================== -->
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a href="#" class="logo-link" aria-label="Sahayak Home">
+          <img src="assets/logo.png" alt="Sahayak Logo" class="logo-img" />
+          <span class="logo-text">Sahayak</span>
+          <span class="logo-tag">v1.0.0</span>
+        </a>
+
+        <nav>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+            <li><a href="#agent-demo" class="nav-link">Agent Demo</a></li>
+            <li><a href="#privacy" class="nav-link">Privacy & Safety</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#install" class="nav-link">Installation</a></li>
+            <li><a href="#faq" class="nav-link">FAQ</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+            ☀️
+          </button>
+          <a href="#install" class="btn btn-primary btn-sm">Get Sahayak</a>
+          <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open mobile navigation">
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================================================
+       Hero Section
+       ======================================================================== -->
+    <main>
+      <section class="hero-section">
+        <div class="container hero-content">
+          <div class="hero-badge-wrap">
+            <span class="badge badge-blue"
+              >Chrome Extension Manifest V3 • Zero Telemetry • Human-In-The-Loop</span
+            >
+          </div>
+
+          <h1 class="hero-title">
+            Your AI Assistant,<br />
+            <span>Right Inside Your Browser.</span>
+          </h1>
+
+          <p class="hero-description">
+            Understand pages, find what matters, and handle everyday browser tasks with an AI
+            companion that keeps you in control. Every browser mutation requires explicit human
+            approval.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#install" class="btn btn-primary btn-lg"> ⬇️ Download Release v1.0.0 (ZIP) </a>
+            <a href="#features" class="btn btn-secondary btn-lg"> Explore Features </a>
+          </div>
+
+          <div class="hero-guarantee">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <span
+              >Deterministic Safety: Payments, form submissions, and destructive actions are
+              code-blocked.</span
+            >
+          </div>
+
+          <!-- Product Preview Mockup -->
+          <div class="hero-mockup-wrapper">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <span class="browser-dot dot-red"></span>
+                <span class="browser-dot dot-yellow"></span>
+                <span class="browser-dot dot-green"></span>
+              </div>
+              <div class="browser-address">https://example.com/docs/enterprise-pricing</div>
+              <div style="width: 40px"></div>
+            </div>
+
+            <div class="browser-viewport">
+              <!-- Simulated Webpage Left Side -->
+              <div class="webpage-mock">
+                <span class="badge badge-blue" style="margin-bottom: 0.75rem"
+                  >Webpage Viewport</span
+                >
+                <h4>Cloud Services & Pricing Tiers</h4>
+                <p>
+                  Review our developer, team, and enterprise plans designed for modern scalable
+                  engineering teams.
+                </p>
+
+                <div class="webpage-mock-card highlighted">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    <strong style="color: var(--accent-blue)">Enterprise Dedicated Cluster</strong>
+                    <span class="badge badge-green">Target Element #pricing</span>
+                  </div>
+                  <p style="font-size: 0.8rem; margin-bottom: 0">
+                    Targeted for smooth scroll-into-view by Sahayak Agent.
+                  </p>
+                </div>
+
+                <div class="webpage-mock-card">
+                  <strong>Standard Developer Tier</strong>
+                  <p style="font-size: 0.8rem; margin-bottom: 0">
+                    Self-service onboarding with full API capabilities.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Sahayak Side Panel Right Side -->
+              <div class="sidepanel-frame">
+                <div class="sidepanel-header">
+                  <div class="sidepanel-title">
+                    <img
+                      src="assets/icons/icon-16.png"
+                      alt="icon"
+                      style="width: 16px; height: 16px"
+                    />
+                    <span>Sahayak (सहायक)</span>
+                  </div>
+                  <span class="badge badge-green">Ready</span>
+                </div>
+
+                <div class="sidepanel-tabs">
+                  <span class="panel-tab">Summary</span>
+                  <span class="panel-tab">Chat</span>
+                  <span class="panel-tab">Find</span>
+                  <span class="panel-tab active">Agent</span>
+                  <span class="panel-tab">Skills</span>
+                  <span class="panel-tab">Memory</span>
+                  <span class="panel-tab">Settings</span>
+                </div>
+
+                <div class="sidepanel-content">
+                  <div style="font-size: 0.8rem; color: var(--text-secondary)">
+                    <strong>User Instruction:</strong> "Find the pricing section and scroll to it."
+                  </div>
+
+                  <!-- Authentic Approval Card Mockup -->
+                  <div class="approval-card-mock">
+                    <div class="approval-card-header">
+                      <span class="approval-card-title">Proposed Action #act_1</span>
+                      <span class="badge badge-green">LOW RISK</span>
+                    </div>
+                    <div class="approval-meta-row">
+                      <div>
+                        <strong>Action:</strong> Scroll to element (<code>scroll_to_element</code>)
+                      </div>
+                      <div>
+                        <strong>Target:</strong> &lt;div class="webpage-mock-card"&gt; • "Enterprise
+                        Dedicated Cluster"
+                      </div>
+                      <div><strong>Reason:</strong> User requested pricing section location.</div>
+                      <div>
+                        <strong>Expected:</strong> Viewport scrolls smoothly to the target card.
+                      </div>
+                    </div>
+                    <div
+                      style="font-size: 0.725rem; color: var(--text-muted); margin-bottom: 0.65rem"
+                    >
+                      🔒 Single-use approval token ready • Preview only (Dry-Run) enabled
+                    </div>
+                    <div class="approval-actions">
+                      <button class="btn btn-primary btn-sm" style="flex: 1">
+                        ✓ Approve & Execute
+                      </button>
+                      <button class="btn btn-secondary btn-sm">✕ Reject</button>
+                    </div>
+                  </div>
+
+                  <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center">
+                    🛡️ Zero auto-execution • Explicit human confirmation enforced
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+         Feature Highlights (12 Cards)
+         ======================================================================== -->
+      <section id="features" class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-blue" style="margin-bottom: 0.75rem"
+              >12 Built-in Capabilities</span
+            >
+            <h2 class="section-title">Everything You Need To Read, Search, & Act</h2>
+            <p class="section-subtitle">
+              Engineered from the ground up for Chrome Manifest V3 with direct local-to-AI
+              connections, streaming responses, and code-level safety boundaries.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <!-- 1. Article Summaries -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">📰</div>
+              <h3>AI Article Summarization</h3>
+              <p>
+                Extracts clutter-free reader view content using Mozilla Readability and outputs
+                three-part structured summaries: One-Line Verdict, Key Takeaways, and Deep Dive.
+              </p>
+              <span class="feature-tag">Slice 3 • Gemini Flash-Lite</span>
+            </div>
+
+            <!-- 2. YouTube Summaries -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">📺</div>
+              <h3>Public YouTube Summaries</h3>
+              <p>
+                Parses public TimedText video transcripts into organized notes and executive briefs
+                with clickable, interactive timestamp seek links that scrub the player directly.
+              </p>
+              <span class="feature-tag">Slice 4 • TimedText Parser</span>
+            </div>
+
+            <!-- 3. Grounded Page Chat -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">💬</div>
+              <h3>Grounded Page Chat</h3>
+              <p>
+                Real-time Server-Sent Events (SSE) streaming Q&A strictly grounded in extracted
+                webpage text via TF-IDF section retrieval, preventing hallucinated replies with
+                citation badges.
+              </p>
+              <span class="feature-tag">Slice 6 • Streaming Q&A</span>
+            </div>
+
+            <!-- 4. Screenshot & Ask -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">📸</div>
+              <h3>Screenshot-and-Ask</h3>
+              <p>
+                Captures your active viewport with one click and runs multimodal visual
+                understanding via Gemini 2.5 Flash to explain charts, diagrams, infographics, and
+                layouts.
+              </p>
+              <span class="feature-tag">Slice 8 • Multimodal Vision</span>
+            </div>
+
+            <!-- 5. English & Hinglish Engine -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">🇮🇳</div>
+              <h3>English & Hinglish Support</h3>
+              <p>
+                Automatic language detection with fluent Latin-script Hinglish understanding and
+                responses (e.g. <em>"Ye article ka main point kya hai?"</em>) without Devanagari
+                transliteration.
+              </p>
+              <span class="feature-tag">Slice 5 • Bilingual Engine</span>
+            </div>
+
+            <!-- 6. Interactive Element Scanner -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">🎯</div>
+              <h3>Interactive Element Scanner</h3>
+              <p>
+                Analyzes clickable DOM elements, buttons, inputs, and ARIA roles. Renders
+                non-intrusive numerical badges inside isolated Shadow DOM without polluting webpage
+                styles.
+              </p>
+              <span class="feature-tag">Slice 10 • Shadow DOM Badges</span>
+            </div>
+
+            <!-- 7. Structured Element Selection -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">🔍</div>
+              <h3>Find It For Me</h3>
+              <p>
+                Natural-language element search (e.g.
+                <em>"Where is the submit ticket button?"</em>). Combines fast local heuristic
+                scoring with Gemini/Groq LLM re-ranking to locate elements.
+              </p>
+              <span class="feature-tag">Slice 11 • Hybrid Selection</span>
+            </div>
+
+            <!-- 8. Single-Step Agent Loop -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">🤖</div>
+              <h3>Single-Step Agent Loop</h3>
+              <p>
+                Controlled agent workflow: Understand → Plan → Present Action → Request Approval →
+                Execute. Strictly executes one step at a time with cryptographic approval tokens.
+              </p>
+              <span class="feature-tag">Slice 12 • HITL Approval UI</span>
+            </div>
+
+            <!-- 9. Dry-Run Mode & Logs -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">🛡️</div>
+              <h3>Dry-Run Mode & Action Logs</h3>
+              <p>
+                Simulate proposed browser actions with zero DOM mutations. Searchable, filterable
+                audit history preserving session states and safe restoration across browser
+                restarts.
+              </p>
+              <span class="feature-tag">Slice 13 • Persistence & Dry-Run</span>
+            </div>
+
+            <!-- 10. Local Profile Memory -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">🧠</div>
+              <h3>Local Profile Memory</h3>
+              <p>
+                Privacy-focused on-device preference memory. Automatically detects user preferences,
+                proposes additions with diff cards, and stores data solely in local Chrome storage.
+              </p>
+              <span class="feature-tag">Slice 14 • On-Device Personalization</span>
+            </div>
+
+            <!-- 11. Reusable Skills -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">⚡</div>
+              <h3>One-Click Reusable Skills</h3>
+              <p>
+                8 built-in productivity workflows (e.g. YouTube Action Item Extractor, Executive
+                Brief). Create custom templates with variable substitution, and import/export
+                portable JSON.
+              </p>
+              <span class="feature-tag">Slice 15 • Skills & JSON Transfer</span>
+            </div>
+
+            <!-- 12. Deterministic Safety Rails -->
+            <div class="feature-card">
+              <div class="feature-icon-wrap">🛑</div>
+              <h3>Deterministic Safety Rails</h3>
+              <p>
+                Zero AI model trust for risk decisions. Deterministic code gatekeeper strictly
+                blocking payments, financial transfers, form submissions, deletions, and dangerous
+                URL protocols.
+              </p>
+              <span class="feature-tag">Slice 16 • Consequential Gating</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+         How It Works (3 Steps)
+         ======================================================================== -->
+      <section id="how-it-works" class="section" style="background-color: var(--bg-secondary)">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-blue" style="margin-bottom: 0.75rem"
+              >Philosophy & Architecture</span
+            >
+            <h2 class="section-title">Human-In-The-Loop By Design</h2>
+            <p class="section-subtitle">
+              Autonomous AI agents that execute actions without asking can delete data or trigger
+              unwanted transactions. Sahayak puts you in command at every step.
+            </p>
+          </div>
+
+          <div class="steps-container">
+            <div class="step-card">
+              <span class="step-number">01</span>
+              <div class="step-icon">👁️</div>
+              <h3>1. Understand</h3>
+              <p>
+                Sahayak analyzes the active webpage, extracting article readability text, YouTube
+                transcripts, or interactive DOM candidate elements only when you invoke it.
+              </p>
+            </div>
+
+            <div class="step-card">
+              <span class="step-number">02</span>
+              <div class="step-icon">💡</div>
+              <h3>2. Assist</h3>
+              <p>
+                The AI proposes a grounded answer, summary, or plans a single next action (e.g.
+                scrolling or clicking). The action is validated against local safety rules and
+                assigned a deterministic risk level.
+              </p>
+            </div>
+
+            <div class="step-card">
+              <span class="step-number">03</span>
+              <div class="step-icon">🔒</div>
+              <h3>3. Stay in Control</h3>
+              <p>
+                You review the proposal on the Side Panel's Approval Card. You can preview in
+                Dry-Run Mode or click Approve. Without your click and a fresh approval token,
+                nothing executes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+         Interactive Browser Agent Demonstration
+         ======================================================================== -->
+      <section id="agent-demo" class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-green" style="margin-bottom: 0.75rem"
+              >Interactive Simulator</span
+            >
+            <h2 class="section-title">Experience the Agent Loop</h2>
+            <p class="section-subtitle">
+              Step through an interactive simulation of Sahayak's single-step Understand → Plan →
+              Approve → Execute cycle.
+            </p>
+          </div>
+
+          <div class="simulator-box">
+            <div class="simulator-stepper">
+              <div class="step-dot active" data-step="0">1</div>
+              <div class="step-dot" data-step="1">2</div>
+              <div class="step-dot" data-step="2">3</div>
+              <div class="step-dot" data-step="3">4</div>
+            </div>
+
+            <div id="sim-content" class="simulator-display">
+              <!-- Populated dynamically by app.js -->
+            </div>
+
+            <div class="simulator-controls">
+              <span style="font-size: 0.8rem; color: var(--text-muted)">
+                Interactive Demo • No actual browser events dispatched
+              </span>
+              <button id="sim-action-btn" class="btn btn-primary btn-sm">
+                Proceed to Planning →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+         Privacy & Deterministic Safety Rails
+         ======================================================================== -->
+      <section id="privacy" class="section" style="background-color: var(--bg-secondary)">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-red" style="margin-bottom: 0.75rem">Security By Code</span>
+            <h2 class="section-title">Deterministic Safety & Privacy First</h2>
+            <p class="section-subtitle">
+              Sahayak does not rely on system prompts or LLM promises to remain safe. Code-level
+              rules guarantee your browser is protected.
+            </p>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 1.5rem;
+              margin-bottom: 2.5rem;
+            "
+          >
+            <div class="feature-card">
+              <div
+                class="feature-icon-wrap"
+                style="color: var(--risk-low); background: rgba(16, 185, 129, 0.15)"
+              >
+                🔑
+              </div>
+              <h3>Local-Only Credentials</h3>
+              <p>
+                Your Gemini and Groq API keys are stored exclusively in your local browser via
+                <code>chrome.storage.local</code>. They are never sent to intermediate proxy servers
+                or telemetry databases.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div
+                class="feature-icon-wrap"
+                style="color: var(--accent-blue); background: rgba(59, 130, 246, 0.15)"
+              >
+                📊
+              </div>
+              <h3>Zero Telemetry</h3>
+              <p>
+                No Google Analytics, no session trackers, and no remote usage logging. What you
+                browse, read, and summarize remains strictly on your device.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div
+                class="feature-icon-wrap"
+                style="color: #a78bfa; background: rgba(167, 139, 250, 0.15)"
+              >
+                🌐
+              </div>
+              <h3>Transparent AI Context</h3>
+              <p>
+                When you trigger a summary or question, only the relevant page content or screenshot
+                is sent directly to your configured provider (Google AI Studio or Groq).
+              </p>
+            </div>
+          </div>
+
+          <!-- Blocked Operations Table -->
+          <h3
+            style="font-size: 1.35rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem"
+          >
+            Immutable Consequential Action Gating
+          </h3>
+          <p
+            style="
+              text-align: center;
+              font-size: 0.9rem;
+              color: var(--text-secondary);
+              margin-bottom: 1.5rem;
+            "
+          >
+            The following 9 categories are deterministically blocked in TypeScript. No model
+            instruction or user approval can bypass these gates.
+          </p>
+
+          <div class="safety-table-wrap">
+            <table class="safety-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Enforcement Rule</th>
+                  <th>Scope & Keywords</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Payments & Checkout</strong></td>
+                  <td>Hard-Blocked in TypeScript</td>
+                  <td>Razorpay, Stripe, PayPal, Buy Now, "Paise do", "Khareedo"</td>
+                  <td><span class="safety-badge">BLOCKED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Financial Transfers</strong></td>
+                  <td>Hard-Blocked in TypeScript</td>
+                  <td>Wire transfers, fund movement, "Bank me bhejo", "Transfer karo"</td>
+                  <td><span class="safety-badge">BLOCKED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Form Submissions</strong></td>
+                  <td>Hard-Blocked in TypeScript</td>
+                  <td>
+                    <code>&lt;button type="submit"&gt;</code>, form submit controls, "Submit form"
+                  </td>
+                  <td><span class="safety-badge">BLOCKED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Destructive Actions</strong></td>
+                  <td>Hard-Blocked in TypeScript</td>
+                  <td>Delete account, purge records, wipe data, "Mita do", "Hata do"</td>
+                  <td><span class="safety-badge">BLOCKED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Outbound Messaging</strong></td>
+                  <td>Hard-Blocked in TypeScript</td>
+                  <td>Send email, direct messages, chat broadcasts, "Mail bhejo"</td>
+                  <td><span class="safety-badge">BLOCKED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Content Publishing</strong></td>
+                  <td>Hard-Blocked in TypeScript</td>
+                  <td>Publish blog post, social media post, comment dispatch</td>
+                  <td><span class="safety-badge">BLOCKED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Security Settings</strong></td>
+                  <td>Hard-Blocked in TypeScript</td>
+                  <td>Password change, MFA disable, API token creation, "Password badlo"</td>
+                  <td><span class="safety-badge">BLOCKED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Sensitive Fields</strong></td>
+                  <td>Hard-Blocked in TypeScript</td>
+                  <td>Interactions targeting password inputs, OTP fields, CVV, PIN entries</td>
+                  <td><span class="safety-badge">BLOCKED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Disallowed Schemes</strong></td>
+                  <td>Hard-Blocked in TypeScript</td>
+                  <td>
+                    Navigation to <code>javascript:</code>, <code>data:</code>, <code>file:</code>,
+                    <code>chrome:</code>, or user-embedded credentials
+                  </td>
+                  <td><span class="safety-badge">BLOCKED</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+         Reusable Skills Section
+         ======================================================================== -->
+      <section id="skills" class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-blue" style="margin-bottom: 0.75rem"
+              >Productivity Workflows</span
+            >
+            <h2 class="section-title">One-Click Reusable Skills</h2>
+            <p class="section-subtitle">
+              Turn repetitive prompts into reusable, parameterized Skills. Execute with one click,
+              duplicate and customize, or transfer them via portable JSON files.
+            </p>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+              gap: 1.5rem;
+              max-width: 960px;
+              margin: 0 auto;
+            "
+          >
+            <div class="feature-card">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <span class="badge badge-blue">Built-in Skill</span>
+                <span style="font-size: 0.75rem; color: var(--text-muted)"
+                  >Slice 4 Integration</span
+                >
+              </div>
+              <h3>YouTube Action Item Extractor</h3>
+              <p>
+                Analyzes the active video transcript and extracts bulleted decision summaries,
+                action items, and referenced tools with timestamp links.
+              </p>
+              <div
+                style="
+                  background: rgba(255, 255, 255, 0.03);
+                  padding: 0.5rem;
+                  border-radius: 6px;
+                  font-family: var(--font-mono);
+                  font-size: 0.75rem;
+                  color: var(--text-secondary);
+                "
+              >
+                Requires: YouTube tab • Route: YouTube Summary
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <span class="badge badge-green">Built-in Skill</span>
+                <span style="font-size: 0.75rem; color: var(--text-muted)"
+                  >Slice 3 Integration</span
+                >
+              </div>
+              <h3>Executive Article Brief</h3>
+              <p>
+                Generates a 3-bullet executive briefing with quantifiable metrics, dates, and
+                takeaways for technical documentation or news articles.
+              </p>
+              <div
+                style="
+                  background: rgba(255, 255, 255, 0.03);
+                  padding: 0.5rem;
+                  border-radius: 6px;
+                  font-family: var(--font-mono);
+                  font-size: 0.75rem;
+                  color: var(--text-secondary);
+                "
+              >
+                Requires: Readable page • Route: Article Summary
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <span class="badge badge-yellow">Custom Skill</span>
+                <span style="font-size: 0.75rem; color: var(--text-muted)">User Defined</span>
+              </div>
+              <h3>Hinglish Explainer with Variables</h3>
+              <p>
+                Explains complex technical jargon in conversational Hinglish with custom audience
+                levels using mustache variable interpolation <code>{{topic}}</code>.
+              </p>
+              <div
+                style="
+                  background: rgba(255, 255, 255, 0.03);
+                  padding: 0.5rem;
+                  border-radius: 6px;
+                  font-family: var(--font-mono);
+                  font-size: 0.75rem;
+                  color: var(--text-secondary);
+                "
+              >
+                Variables: {{topic}}, {{tone}} • Route: Page Chat
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 2rem">
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem">
+              Export skills to portable <code>.json</code> files without secrets or personal data,
+              and share workflows across machines.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+         Installation & Getting Started
+         ======================================================================== -->
+      <section id="install" class="section" style="background-color: var(--bg-secondary)">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-green" style="margin-bottom: 0.75rem">Quick Setup</span>
+            <h2 class="section-title">Install Sahayak in Under 2 Minutes</h2>
+            <p class="section-subtitle">
+              Sahayak is fully open and packaged for direct installation in Google Chrome Developer
+              Mode.
+            </p>
+          </div>
+
+          <div class="install-card">
+            <div style="text-align: center; margin-bottom: 2rem">
+              <a
+                href="https://github.com/placeholder-sahayak/releases/latest"
+                class="btn btn-primary btn-lg"
+                id="download-zip-btn"
+              >
+                📦 Download sahayak-v1.0.0.zip
+              </a>
+              <div style="margin-top: 0.75rem; font-size: 0.825rem; color: var(--text-muted)">
+                Packaged Release Archive • Manifest V3 • Size: 841 KB
+              </div>
+            </div>
+
+            <div class="install-steps">
+              <div class="install-step-item">
+                <div class="install-badge">1</div>
+                <div class="install-content">
+                  <h4>Extract the Release ZIP</h4>
+                  <p>
+                    Download the ZIP archive and extract it to a convenient folder on your machine
+                    (e.g. <code>C:\Sahayak-v1.0.0</code> or <code>~/sahayak</code>).
+                  </p>
+                </div>
+              </div>
+
+              <div class="install-step-item">
+                <div class="install-badge">2</div>
+                <div class="install-content">
+                  <h4>Open Chrome Extensions</h4>
+                  <p>
+                    In Google Chrome, navigate to <code>chrome://extensions</code> in your URL
+                    address bar.
+                  </p>
+                </div>
+              </div>
+
+              <div class="install-step-item">
+                <div class="install-badge">3</div>
+                <div class="install-content">
+                  <h4>Enable Developer Mode</h4>
+                  <p>
+                    Toggle the <strong>Developer mode</strong> switch located in the upper-right
+                    corner of the Extensions page.
+                  </p>
+                </div>
+              </div>
+
+              <div class="install-step-item">
+                <div class="install-badge">4</div>
+                <div class="install-content">
+                  <h4>Click "Load unpacked"</h4>
+                  <p>
+                    Click the <strong>Load unpacked</strong> button in the top-left toolbar, and
+                    select the extracted extension directory (containing
+                    <code>manifest.json</code>).
+                  </p>
+                </div>
+              </div>
+
+              <div class="install-step-item">
+                <div class="install-badge">5</div>
+                <div class="install-content">
+                  <h4>Open Side Panel & Configure API Key</h4>
+                  <p>
+                    Click the Sahayak icon in your browser toolbar to open the Side Panel. Go to
+                    <strong>Settings</strong> to enter your free Google Gemini API key or Groq API
+                    key.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="checksum-box">
+              <span
+                ><strong>SHA-256:</strong>
+                <span class="checksum-val"
+                  >f15f34d2dd57dce2782ea94cf41e96330a04b9544f571002921602202dc38faa</span
+                ></span
+              >
+              <button
+                class="badge badge-blue"
+                data-copy="f15f34d2dd57dce2782ea94cf41e96330a04b9544f571002921602202dc38faa"
+                style="cursor: pointer; border: none"
+              >
+                Copy
+              </button>
+            </div>
+
+            <div
+              style="
+                margin-top: 1.5rem;
+                text-align: center;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                background: rgba(59, 130, 246, 0.08);
+                padding: 0.75rem;
+                border-radius: 6px;
+              "
+            >
+              ℹ️ <strong>Chrome Web Store Listing:</strong> Submission packaging is prepared.
+              Official Chrome Web Store listing link will be made available upon store approval.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+         FAQ Section (9 Questions)
+         ======================================================================== -->
+      <section id="faq" class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-blue" style="margin-bottom: 0.75rem">Common Questions</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">
+              Clear, honest answers about how Sahayak functions, its privacy guarantees, and
+              supported capabilities.
+            </p>
+          </div>
+
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>What is Sahayak (सहायक)?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Sahayak is a user-controlled Chrome extension (Manifest V3) that docks into your
+                browser's Side Panel. It provides article summarization, YouTube transcript briefs,
+                grounded page chat, element highlighting, and single-step browser task automation
+                under human approval.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Which browser does Sahayak support?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Sahayak supports Google Chrome version 116 and newer, as well as Chromium-based
+                browsers that support the native Chrome Side Panel API and Manifest V3.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Does Sahayak require an API key?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Yes. Sahayak connects directly from your browser to AI providers. You can provide a
+                free Google AI Studio Gemini API key, and optionally a Groq API key for automatic
+                failover. Your keys are stored strictly in local Chrome storage and never shared
+                with any third party.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Is my browsing data stored locally?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Yes. All profile memories, action history logs, skill configurations, and API
+                credentials reside entirely on your machine in <code>chrome.storage.local</code>.
+                Sahayak does not collect analytics or track your browsing activity. When you request
+                AI analysis, only the relevant page content or screenshot is transmitted directly to
+                Google Gemini or Groq.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Does Sahayak perform browser actions automatically?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Never. Sahayak operates strictly on a single-step Human-In-The-Loop model:
+                Understand → Plan → Present Action → Request Approval → Execute. Every browser
+                action requires an explicit click on the "Approve" button and issues a single-use
+                cryptographic token. Consequential actions (payments, form submissions, deletions)
+                are deterministically hard-blocked in code.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Can I use Hinglish with Sahayak?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Yes! Sahayak features a dedicated English and Hinglish language engine (Slice 5).
+                You can ask questions in Latin-script Hinglish (e.g.
+                <em>"Is page ka summary batao"</em> or <em>"Buy button dhoondh do"</em>) and Sahayak
+                will reply in fluent, natural Hinglish.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>What is Dry-Run Mode?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Dry-Run Mode (Slice 13) allows you to preview simulated browser actions without
+                dispatching real mouse clicks, keystrokes, or page changes. It enables inspecting
+                proposed targets safely before granting live execution authority.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Can I create and export custom Skills?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Yes. The Reusable Skills system (Slice 15) allows you to create custom workflows
+                with mustache template variables, test them, and export them as portable JSON files
+                without any credentials or personal memory data.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>How do I update the extension?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                When a new release ZIP is published, download and extract it to overwrite the
+                existing unpacked extension folder. Then open <code>chrome://extensions</code> and
+                click the circular reload icon on the Sahayak card.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================================================================
+       Footer
+       ======================================================================== -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div style="display: flex; align-items: center; gap: 0.65rem">
+              <img src="assets/logo.png" alt="Sahayak Logo" style="height: 2rem; width: auto" />
+              <strong style="font-size: 1.15rem; color: var(--text-primary)"
+                >Sahayak (सहायक)</strong
+              >
+            </div>
+            <p>
+              User-controlled, context-aware Chrome browser agent. Read, explain, see, remember, and
+              act under human approval.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h5>Product</h5>
+            <ul class="footer-links">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#agent-demo">Agent Loop</a></li>
+              <li><a href="#skills">Skills Library</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>Documentation</h5>
+            <ul class="footer-links">
+              <li><a href="INSTALLATION.md">Installation Guide</a></li>
+              <li><a href="RELEASE.md">Release Notes</a></li>
+              <li><a href="PRIVACY.md">Privacy Policy</a></li>
+              <li><a href="../CHANGELOG.md">Changelog</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>Security</h5>
+            <ul class="footer-links">
+              <li><a href="#privacy">Deterministic Safety</a></li>
+              <li><a href="#privacy">Blocked Categories</a></li>
+              <li><a href="#install">SHA-256 Verification</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>© 2026 Sahayak Project. Licensed under MIT. Built with Chrome Extension MV3.</div>
+          <div>
+            <span>Zero Telemetry</span> • <span>Local-First Memory</span> •
+            <span>Human-In-The-Loop</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

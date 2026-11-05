@@ -1,0 +1,215 @@
+/**
+ * Sahayak Built-in Skills Library
+ * Predefined, immutable workflow templates available immediately upon installation.
+ */
+
+import { Skill } from '../types/skill.types';
+
+const BUILTIN_TIMESTAMP = '2026-11-03T00:00:00.000Z';
+
+export const BUILTIN_SKILLS: ReadonlyArray<Skill> = [
+  {
+    id: 'builtin-quick-summary',
+    name: 'Quick Article Summary',
+    description:
+      'Generate a concise summary of the current article with key points and main conclusion.',
+    category: 'summarization',
+    icon: 'FileText',
+    instructionTemplate:
+      'Summarize this article with a high-level overview, 5 key points, and the main conclusion.',
+    parameters: [],
+    supportedPageTypes: ['article', 'any'],
+    executionRoute: 'summarize',
+    source: 'built_in',
+    version: 1,
+    isEnabled: true,
+    isFavorite: true,
+    createdAt: BUILTIN_TIMESTAMP,
+    updatedAt: BUILTIN_TIMESTAMP,
+  },
+  {
+    id: 'builtin-detailed-analysis',
+    name: 'Detailed Article Analysis',
+    description:
+      'Generate a structured analysis with key arguments, supporting evidence, and takeaways.',
+    category: 'summarization',
+    icon: 'BookOpen',
+    instructionTemplate:
+      'Perform an in-depth structured analysis of this article focusing on: {{focus_aspects}}. Depth level: {{depth}}.',
+    parameters: [
+      {
+        name: 'focus_aspects',
+        label: 'Focus Aspects',
+        description: 'Specific themes or methodology to prioritize',
+        type: 'string',
+        defaultValue: 'Main arguments, evidence, methodology, and key implications',
+        required: true,
+        placeholder: 'e.g. key arguments, statistics, evidence',
+      },
+      {
+        name: 'depth',
+        label: 'Analysis Depth',
+        type: 'select',
+        defaultValue: 'deep-dive',
+        options: ['overview', 'standard', 'deep-dive'],
+        required: true,
+      },
+    ],
+    supportedPageTypes: ['article', 'any'],
+    executionRoute: 'summarize',
+    source: 'built_in',
+    version: 1,
+    isEnabled: true,
+    isFavorite: false,
+    createdAt: BUILTIN_TIMESTAMP,
+    updatedAt: BUILTIN_TIMESTAMP,
+  },
+  {
+    id: 'builtin-explain-page',
+    name: 'Explain This Page',
+    description:
+      'Explain the current webpage in simple, clear language tailored to your profile preferences.',
+    category: 'research',
+    icon: 'HelpCircle',
+    instructionTemplate:
+      'Explain this webpage in simple, accessible language. What is its core purpose, who is it for, and what are the main takeaways?',
+    parameters: [],
+    supportedPageTypes: ['any'],
+    executionRoute: 'chat',
+    source: 'built_in',
+    version: 1,
+    isEnabled: true,
+    isFavorite: true,
+    createdAt: BUILTIN_TIMESTAMP,
+    updatedAt: BUILTIN_TIMESTAMP,
+  },
+  {
+    id: 'builtin-extract-key-info',
+    name: 'Extract Key Information',
+    description:
+      'Identify important facts, dates, names, figures, and references from the current page.',
+    category: 'research',
+    icon: 'ListChecks',
+    instructionTemplate:
+      'Extract all key factual data points, statistics, dates, important entities, and actionable information from this page.',
+    parameters: [],
+    supportedPageTypes: ['any'],
+    executionRoute: 'chat',
+    source: 'built_in',
+    version: 1,
+    isEnabled: true,
+    isFavorite: false,
+    createdAt: BUILTIN_TIMESTAMP,
+    updatedAt: BUILTIN_TIMESTAMP,
+  },
+  {
+    id: 'builtin-youtube-summary',
+    name: 'YouTube Video Summary',
+    description:
+      'Summarize the current supported YouTube video using available transcript information and timestamps.',
+    category: 'summarization',
+    icon: 'Youtube',
+    instructionTemplate:
+      'Summarize this YouTube video transcript. Highlight core thesis, major takeaways, and timestamped key moments.',
+    parameters: [],
+    supportedPageTypes: ['youtube'],
+    executionRoute: 'youtube',
+    source: 'built_in',
+    version: 1,
+    isEnabled: true,
+    isFavorite: true,
+    createdAt: BUILTIN_TIMESTAMP,
+    updatedAt: BUILTIN_TIMESTAMP,
+  },
+  {
+    id: 'builtin-find-element',
+    name: 'Find Page Element',
+    description:
+      'Help locate an interactive element on the webpage using natural language and visual badge highlighting.',
+    category: 'page_interaction',
+    icon: 'Target',
+    instructionTemplate: 'Find and highlight: {{element_description}}',
+    parameters: [
+      {
+        name: 'element_description',
+        label: 'Element Description',
+        description: 'Describe the button, link, or input you are looking for',
+        type: 'string',
+        defaultValue: '',
+        required: true,
+        placeholder: 'e.g. login button, search bar, contact support form',
+      },
+    ],
+    supportedPageTypes: ['interactive', 'any'],
+    executionRoute: 'find_element',
+    source: 'built_in',
+    version: 1,
+    isEnabled: true,
+    isFavorite: false,
+    createdAt: BUILTIN_TIMESTAMP,
+    updatedAt: BUILTIN_TIMESTAMP,
+  },
+  {
+    id: 'builtin-improve-text',
+    name: 'Improve Selected Text',
+    description:
+      'Rewrite user-selected text according to a specified style, tone, and readability.',
+    category: 'writing',
+    icon: 'PenTool',
+    instructionTemplate:
+      'Rewrite and improve the selected text. Target style: {{style}}. Tone: {{tone}}.',
+    parameters: [
+      {
+        name: 'style',
+        label: 'Writing Style',
+        type: 'select',
+        defaultValue: 'Clear & Concise',
+        options: ['Clear & Concise', 'Professional', 'Academic', 'Casual', 'Persuasive'],
+        required: true,
+      },
+      {
+        name: 'tone',
+        label: 'Tone of Voice',
+        type: 'select',
+        defaultValue: 'Neutral',
+        options: ['Neutral', 'Enthusiastic', 'Formal', 'Hinglish-friendly'],
+        required: true,
+      },
+    ],
+    supportedPageTypes: ['selection', 'any'],
+    executionRoute: 'rewrite',
+    source: 'built_in',
+    version: 1,
+    isEnabled: true,
+    isFavorite: false,
+    createdAt: BUILTIN_TIMESTAMP,
+    updatedAt: BUILTIN_TIMESTAMP,
+  },
+  {
+    id: 'builtin-ask-page',
+    name: 'Ask This Page',
+    description: 'Open grounded page chat with the current page context and ask any question.',
+    category: 'productivity',
+    icon: 'MessageSquare',
+    instructionTemplate: '{{question}}',
+    parameters: [
+      {
+        name: 'question',
+        label: 'Your Question',
+        description: 'Ask anything about the current page content',
+        type: 'string',
+        defaultValue: '',
+        required: true,
+        placeholder: 'What would you like to know about this page?',
+      },
+    ],
+    supportedPageTypes: ['any'],
+    executionRoute: 'chat',
+    source: 'built_in',
+    version: 1,
+    isEnabled: true,
+    isFavorite: false,
+    createdAt: BUILTIN_TIMESTAMP,
+    updatedAt: BUILTIN_TIMESTAMP,
+  },
+];
