@@ -1,5 +1,5 @@
 /**
- * Sahayak Landing Page Client Logic (Slice 17)
+ * Sahayak Landing Page Client Logic
  * Handles theme toggling, interactive agent simulation, FAQ accordions,
  * and copy-to-clipboard interactions.
  */
@@ -38,6 +38,7 @@ function updateThemeIcon(theme) {
   toggleBtn.innerHTML = theme === 'dark' ? '☀️' : '🌙';
   toggleBtn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
 }
+window.updateThemeIcon = updateThemeIcon;
 
 /* -------------------------------------------------------------------------- */
 /* Mobile Menu Toggle                                                         */
@@ -75,7 +76,7 @@ const SIMULATOR_STEPS = [
         </div>
       </div>
       <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.75rem;">
-        Sahayak activates the Interactive Element Scanner (Slice 10) and natural-language element ranker (Slice 11) to locate the target element.
+        Sahayak activates the Interactive Element Scanner and natural-language element ranker to locate the target element.
       </p>
     `,
     btnText: 'Proceed to Planning →',

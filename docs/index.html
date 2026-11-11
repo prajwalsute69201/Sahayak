@@ -131,45 +131,16 @@
                 <span class="browser-dot dot-yellow"></span>
                 <span class="browser-dot dot-green"></span>
               </div>
-              <div class="browser-address">https://example.com/docs/enterprise-pricing</div>
+              <div class="browser-address" id="browser-address-bar">
+                https://techpulse.dev/articles/rise-of-user-controlled-browser-agents
+              </div>
               <div style="width: 40px"></div>
             </div>
 
             <div class="browser-viewport">
               <!-- Simulated Webpage Left Side -->
-              <div class="webpage-mock">
-                <span class="badge badge-blue" style="margin-bottom: 0.75rem"
-                  >Webpage Viewport</span
-                >
-                <h4>Cloud Services & Pricing Tiers</h4>
-                <p>
-                  Review our developer, team, and enterprise plans designed for modern scalable
-                  engineering teams.
-                </p>
-
-                <div class="webpage-mock-card highlighted">
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: space-between;
-                      align-items: center;
-                      margin-bottom: 0.5rem;
-                    "
-                  >
-                    <strong style="color: var(--accent-blue)">Enterprise Dedicated Cluster</strong>
-                    <span class="badge badge-green">Target Element #pricing</span>
-                  </div>
-                  <p style="font-size: 0.8rem; margin-bottom: 0">
-                    Targeted for smooth scroll-into-view by Sahayak Agent.
-                  </p>
-                </div>
-
-                <div class="webpage-mock-card">
-                  <strong>Standard Developer Tier</strong>
-                  <p style="font-size: 0.8rem; margin-bottom: 0">
-                    Self-service onboarding with full API capabilities.
-                  </p>
-                </div>
+              <div class="webpage-mock" id="showcase-webpage-viewport">
+                <!-- Dynamically rendered by showcase.js -->
               </div>
 
               <!-- Sahayak Side Panel Right Side -->
@@ -183,59 +154,82 @@
                     />
                     <span>Sahayak (सहायक)</span>
                   </div>
-                  <span class="badge badge-green">Ready</span>
+                  <span class="badge badge-green" id="sidepanel-status-badge">Ready</span>
                 </div>
 
-                <div class="sidepanel-tabs">
-                  <span class="panel-tab">Summary</span>
-                  <span class="panel-tab">Chat</span>
-                  <span class="panel-tab">Find</span>
-                  <span class="panel-tab active">Agent</span>
-                  <span class="panel-tab">Skills</span>
-                  <span class="panel-tab">Memory</span>
-                  <span class="panel-tab">Settings</span>
+                <div
+                  class="sidepanel-tabs"
+                  id="showcase-tabs"
+                  role="tablist"
+                  aria-label="Sahayak Features"
+                >
+                  <button
+                    type="button"
+                    class="panel-tab active"
+                    data-tab="summary"
+                    role="tab"
+                    aria-selected="true"
+                  >
+                    Summary
+                  </button>
+                  <button
+                    type="button"
+                    class="panel-tab"
+                    data-tab="chat"
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    Chat
+                  </button>
+                  <button
+                    type="button"
+                    class="panel-tab"
+                    data-tab="find"
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    Find
+                  </button>
+                  <button
+                    type="button"
+                    class="panel-tab"
+                    data-tab="agent"
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    Agent
+                  </button>
+                  <button
+                    type="button"
+                    class="panel-tab"
+                    data-tab="skills"
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    Skills
+                  </button>
+                  <button
+                    type="button"
+                    class="panel-tab"
+                    data-tab="memory"
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    Memory
+                  </button>
+                  <button
+                    type="button"
+                    class="panel-tab"
+                    data-tab="settings"
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    Settings
+                  </button>
                 </div>
 
-                <div class="sidepanel-content">
-                  <div style="font-size: 0.8rem; color: var(--text-secondary)">
-                    <strong>User Instruction:</strong> "Find the pricing section and scroll to it."
-                  </div>
-
-                  <!-- Authentic Approval Card Mockup -->
-                  <div class="approval-card-mock">
-                    <div class="approval-card-header">
-                      <span class="approval-card-title">Proposed Action #act_1</span>
-                      <span class="badge badge-green">LOW RISK</span>
-                    </div>
-                    <div class="approval-meta-row">
-                      <div>
-                        <strong>Action:</strong> Scroll to element (<code>scroll_to_element</code>)
-                      </div>
-                      <div>
-                        <strong>Target:</strong> &lt;div class="webpage-mock-card"&gt; • "Enterprise
-                        Dedicated Cluster"
-                      </div>
-                      <div><strong>Reason:</strong> User requested pricing section location.</div>
-                      <div>
-                        <strong>Expected:</strong> Viewport scrolls smoothly to the target card.
-                      </div>
-                    </div>
-                    <div
-                      style="font-size: 0.725rem; color: var(--text-muted); margin-bottom: 0.65rem"
-                    >
-                      🔒 Single-use approval token ready • Preview only (Dry-Run) enabled
-                    </div>
-                    <div class="approval-actions">
-                      <button class="btn btn-primary btn-sm" style="flex: 1">
-                        ✓ Approve & Execute
-                      </button>
-                      <button class="btn btn-secondary btn-sm">✕ Reject</button>
-                    </div>
-                  </div>
-
-                  <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center">
-                    🛡️ Zero auto-execution • Explicit human confirmation enforced
-                  </div>
+                <div class="sidepanel-content" id="showcase-content">
+                  <!-- Dynamically rendered by showcase.js -->
                 </div>
               </div>
             </div>
@@ -268,7 +262,6 @@
                 Extracts clutter-free reader view content using Mozilla Readability and outputs
                 three-part structured summaries: One-Line Verdict, Key Takeaways, and Deep Dive.
               </p>
-              <span class="feature-tag">Slice 3 • Gemini Flash-Lite</span>
             </div>
 
             <!-- 2. YouTube Summaries -->
@@ -279,7 +272,6 @@
                 Parses public TimedText video transcripts into organized notes and executive briefs
                 with clickable, interactive timestamp seek links that scrub the player directly.
               </p>
-              <span class="feature-tag">Slice 4 • TimedText Parser</span>
             </div>
 
             <!-- 3. Grounded Page Chat -->
@@ -291,7 +283,6 @@
                 webpage text via TF-IDF section retrieval, preventing hallucinated replies with
                 citation badges.
               </p>
-              <span class="feature-tag">Slice 6 • Streaming Q&A</span>
             </div>
 
             <!-- 4. Screenshot & Ask -->
@@ -303,7 +294,6 @@
                 understanding via Gemini 2.5 Flash to explain charts, diagrams, infographics, and
                 layouts.
               </p>
-              <span class="feature-tag">Slice 8 • Multimodal Vision</span>
             </div>
 
             <!-- 5. English & Hinglish Engine -->
@@ -315,7 +305,6 @@
                 responses (e.g. <em>"Ye article ka main point kya hai?"</em>) without Devanagari
                 transliteration.
               </p>
-              <span class="feature-tag">Slice 5 • Bilingual Engine</span>
             </div>
 
             <!-- 6. Interactive Element Scanner -->
@@ -327,7 +316,6 @@
                 non-intrusive numerical badges inside isolated Shadow DOM without polluting webpage
                 styles.
               </p>
-              <span class="feature-tag">Slice 10 • Shadow DOM Badges</span>
             </div>
 
             <!-- 7. Structured Element Selection -->
@@ -339,7 +327,6 @@
                 <em>"Where is the submit ticket button?"</em>). Combines fast local heuristic
                 scoring with Gemini/Groq LLM re-ranking to locate elements.
               </p>
-              <span class="feature-tag">Slice 11 • Hybrid Selection</span>
             </div>
 
             <!-- 8. Single-Step Agent Loop -->
@@ -350,7 +337,6 @@
                 Controlled agent workflow: Understand → Plan → Present Action → Request Approval →
                 Execute. Strictly executes one step at a time with cryptographic approval tokens.
               </p>
-              <span class="feature-tag">Slice 12 • HITL Approval UI</span>
             </div>
 
             <!-- 9. Dry-Run Mode & Logs -->
@@ -362,7 +348,6 @@
                 audit history preserving session states and safe restoration across browser
                 restarts.
               </p>
-              <span class="feature-tag">Slice 13 • Persistence & Dry-Run</span>
             </div>
 
             <!-- 10. Local Profile Memory -->
@@ -373,7 +358,6 @@
                 Privacy-focused on-device preference memory. Automatically detects user preferences,
                 proposes additions with diff cards, and stores data solely in local Chrome storage.
               </p>
-              <span class="feature-tag">Slice 14 • On-Device Personalization</span>
             </div>
 
             <!-- 11. Reusable Skills -->
@@ -385,7 +369,6 @@
                 Brief). Create custom templates with variable substitution, and import/export
                 portable JSON.
               </p>
-              <span class="feature-tag">Slice 15 • Skills & JSON Transfer</span>
             </div>
 
             <!-- 12. Deterministic Safety Rails -->
@@ -397,7 +380,6 @@
                 blocking payments, financial transfers, form submissions, deletions, and dangerous
                 URL protocols.
               </p>
-              <span class="feature-tag">Slice 16 • Consequential Gating</span>
             </div>
           </div>
         </div>
@@ -690,9 +672,7 @@
                 "
               >
                 <span class="badge badge-blue">Built-in Skill</span>
-                <span style="font-size: 0.75rem; color: var(--text-muted)"
-                  >Slice 4 Integration</span
-                >
+                <span style="font-size: 0.75rem; color: var(--text-muted)">Media Extraction</span>
               </div>
               <h3>YouTube Action Item Extractor</h3>
               <p>
@@ -723,9 +703,7 @@
                 "
               >
                 <span class="badge badge-green">Built-in Skill</span>
-                <span style="font-size: 0.75rem; color: var(--text-muted)"
-                  >Slice 3 Integration</span
-                >
+                <span style="font-size: 0.75rem; color: var(--text-muted)">Reader View</span>
               </div>
               <h3>Executive Article Brief</h3>
               <p>
@@ -994,8 +972,8 @@
                 <span class="faq-icon">+</span>
               </button>
               <div class="faq-answer">
-                Yes! Sahayak features a dedicated English and Hinglish language engine (Slice 5).
-                You can ask questions in Latin-script Hinglish (e.g.
+                Yes! Sahayak features a dedicated English and Hinglish language engine. You can ask
+                questions in Latin-script Hinglish (e.g.
                 <em>"Is page ka summary batao"</em> or <em>"Buy button dhoondh do"</em>) and Sahayak
                 will reply in fluent, natural Hinglish.
               </div>
@@ -1007,9 +985,9 @@
                 <span class="faq-icon">+</span>
               </button>
               <div class="faq-answer">
-                Dry-Run Mode (Slice 13) allows you to preview simulated browser actions without
-                dispatching real mouse clicks, keystrokes, or page changes. It enables inspecting
-                proposed targets safely before granting live execution authority.
+                Dry-Run Mode allows you to preview simulated browser actions without dispatching
+                real mouse clicks, keystrokes, or page changes. It enables inspecting proposed
+                targets safely before granting live execution authority.
               </div>
             </div>
 
@@ -1019,9 +997,9 @@
                 <span class="faq-icon">+</span>
               </button>
               <div class="faq-answer">
-                Yes. The Reusable Skills system (Slice 15) allows you to create custom workflows
-                with mustache template variables, test them, and export them as portable JSON files
-                without any credentials or personal memory data.
+                Yes. The Reusable Skills system allows you to create custom workflows with mustache
+                template variables, test them, and export them as portable JSON files without any
+                credentials or personal memory data.
               </div>
             </div>
 
@@ -1100,6 +1078,7 @@
       </div>
     </footer>
 
+    <script src="showcase.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

@@ -7,6 +7,7 @@ node_modules/
 dist/
 dist-zip/
 release/
+.git_backup/
 
 # Testing coverage
 coverage/
@@ -29,3 +30,8 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# Python
+__pycache__/
+*.py[cod]
+
