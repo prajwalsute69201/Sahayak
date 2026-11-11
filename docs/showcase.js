@@ -1470,6 +1470,24 @@
         </label>
       </div>
 
+      <!-- Search & Filters -->
+      <div style="margin-bottom: 0.5rem;">
+        <input
+          type="text"
+          id="mem-search-input"
+          class="skills-search-input"
+          style="margin-bottom: 0.35rem;"
+          placeholder="Search saved memories..."
+          value="${escapeHtml(search)}"
+        />
+        <div class="memory-pills-row">
+          <button type="button" class="demo-pill-btn ${category === 'all' ? 'active' : ''}" data-cat="all">All (${memories.length})</button>
+          <button type="button" class="demo-pill-btn ${category === 'language' ? 'active' : ''}" data-cat="language">Language</button>
+          <button type="button" class="demo-pill-btn ${category === 'content' ? 'active' : ''}" data-cat="content">Content</button>
+          <button type="button" class="demo-pill-btn ${category === 'interaction' ? 'active' : ''}" data-cat="interaction">Interaction</button>
+        </div>
+      </div>
+
       <!-- Add Memory Form -->
       <form class="add-memory-form" id="add-memory-form">
         <div style="display: flex; gap: 0.35rem;">
@@ -1489,14 +1507,6 @@
         </div>
         <button type="submit" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 0.35rem;">+ Add Memory</button>
       </form>
-
-      <!-- Category Filter Pills -->
-      <div class="memory-pills-row">
-        <button type="button" class="demo-pill-btn ${category === 'all' ? 'active' : ''}" data-cat="all">All (${memories.length})</button>
-        <button type="button" class="demo-pill-btn ${category === 'language' ? 'active' : ''}" data-cat="language">Language</button>
-        <button type="button" class="demo-pill-btn ${category === 'content' ? 'active' : ''}" data-cat="content">Content</button>
-        <button type="button" class="demo-pill-btn ${category === 'interaction' ? 'active' : ''}" data-cat="interaction">Interaction</button>
-      </div>
 
       <!-- Memories List -->
       <div class="memories-scroll-list">
@@ -1566,6 +1576,11 @@
 
     document.getElementById('mem-toggle-suggestions')?.addEventListener('change', (e) => {
       state.memory.suggestions = e.target.checked;
+    });
+
+    container.querySelector('#mem-search-input')?.addEventListener('input', (e) => {
+      state.memory.search = e.target.value;
+      renderMemoryTab(container);
     });
 
     container.querySelector('#add-memory-form')?.addEventListener('submit', (e) => {
@@ -1654,8 +1669,8 @@
       <div class="settings-subnav">
         <button type="button" class="settings-subtab ${s.activeSection === 'general' ? 'active' : ''}" data-sec="general">General</button>
         <button type="button" class="settings-subtab ${s.activeSection === 'provider' ? 'active' : ''}" data-sec="provider">AI Provider</button>
-        <button type="button" class="settings-subtab ${s.activeSection === 'safety' ? 'active' : ''}" data-sec="safety">Safety</button>
-        <button type="button" class="settings-subtab ${s.activeSection === 'about' ? 'active' : ''}" data-sec="about">About</button>
+        <button type="button" class="settings-subtab ${s.activeSection === 'safety' ? 'active' : ''}" data-sec="safety">Privacy & Safety</button>
+        <button type="button" class="settings-subtab ${s.activeSection === 'about' ? 'active' : ''}" data-sec="about">Application</button>
       </div>
 
       <!-- Settings Body -->
@@ -1678,6 +1693,7 @@
               <select id="set-theme" class="demo-select-sm">
                 <option value="dark" ${s.theme === 'dark' ? 'selected' : ''}>Dark Mode</option>
                 <option value="light" ${s.theme === 'light' ? 'selected' : ''}>Light Mode</option>
+                <option value="system" ${s.theme === 'system' ? 'selected' : ''}>System Preference</option>
               </select>
             </div>
 
@@ -1690,7 +1706,7 @@
             </div>
 
             <div class="settings-field">
-              <label for="set-summary-len">Summary Length</label>
+              <label for="set-summary-len">Default Summary Length</label>
               <select id="set-summary-len" class="demo-select-sm">
                 <option value="concise" ${s.summaryLength === 'concise' ? 'selected' : ''}>Concise</option>
                 <option value="balanced" ${s.summaryLength === 'balanced' ? 'selected' : ''}>Balanced</option>
@@ -1747,18 +1763,31 @@
                 ? `
           <div class="settings-group">
             <label class="demo-toggle-row">
-              <span>Dry-Run Mode (Preview Mutations Only)</span>
-              <input type="checkbox" id="set-dryrun" ${s.dryRun ? 'checked' : ''} />
-              <span class="demo-toggle-slider"></span>
-            </label>
-
-            <label class="demo-toggle-row">
-              <span>Personalization Memory Active</span>
+              <span>Personalization Toggle</span>
               <input type="checkbox" id="set-pers" ${s.personalization ? 'checked' : ''} />
               <span class="demo-toggle-slider"></span>
             </label>
 
-            <div style="margin-top: 0.75rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.65rem;">
+            <label class="demo-toggle-row">
+              <span>Memory Suggestions Toggle</span>
+              <input type="checkbox" id="set-mem-sugg" ${s.memorySuggestions ? 'checked' : ''} />
+              <span class="demo-toggle-slider"></span>
+            </label>
+
+            <label class="demo-toggle-row">
+              <span>Dry-Run Mode Toggle (Preview Only)</span>
+              <input type="checkbox" id="set-dryrun" ${s.dryRun ? 'checked' : ''} />
+              <span class="demo-toggle-slider"></span>
+            </label>
+
+            <div style="margin-top: 0.5rem; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 6px; padding: 0.65rem;">
+              <strong style="font-size: 0.775rem; color: #60a5fa;">Human Approval Requirement:</strong>
+              <div style="font-size: 0.725rem; color: var(--text-secondary); margin-top: 0.25rem; line-height: 1.4;">
+                Every web action requires an explicit Approval Card click. Cryptographic single-use tokens prevent autonomous rogue execution.
+              </div>
+            </div>
+
+            <div style="margin-top: 0.5rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.65rem;">
               <strong style="font-size: 0.775rem; color: #34d399;">9 Deterministic Blocked Categories:</strong>
               <div style="font-size: 0.725rem; color: var(--text-secondary); margin-top: 0.25rem; line-height: 1.4;">
                 Payments, banking transfers, passwords, credit card inputs, order confirmation buttons, and account deletion gates cannot be automated under any prompt.
@@ -1767,7 +1796,7 @@
           </div>
         `
                 : `
-          <!-- About -->
+          <!-- Application -->
           <div class="settings-group">
             <div style="text-align: center; margin-bottom: 0.5rem;">
               <img src="assets/icons/icon-48.png" alt="logo" style="width: 32px; height: 32px; margin-bottom: 0.25rem;" />
@@ -1775,7 +1804,13 @@
               <span style="font-size: 0.75rem; color: var(--text-muted);">Version 1.0.0 • Chrome Manifest V3</span>
             </div>
 
-            <div style="font-size: 0.775rem; color: var(--text-secondary); line-height: 1.45;">
+            <label class="demo-toggle-row">
+              <span>Notification Preferences</span>
+              <input type="checkbox" id="set-notif" ${s.notifications ? 'checked' : ''} />
+              <span class="demo-toggle-slider"></span>
+            </label>
+
+            <div style="font-size: 0.775rem; color: var(--text-secondary); line-height: 1.45; margin-top: 0.25rem;">
               User-controlled, context-aware browser agent companion. Built with strict Human-In-The-Loop safety, zero telemetry, and dual Gemini + Groq intelligence.
             </div>
 
@@ -1801,14 +1836,61 @@
       });
     });
 
+    container.querySelector('#set-lang')?.addEventListener('change', (e) => {
+      state.settings.language = e.target.value;
+    });
+
+    container.querySelector('#set-summary-style')?.addEventListener('change', (e) => {
+      state.settings.summaryStyle = e.target.value;
+    });
+
+    container.querySelector('#set-summary-len')?.addEventListener('change', (e) => {
+      state.settings.summaryLength = e.target.value;
+    });
+
+    container.querySelector('#set-primary-model')?.addEventListener('change', (e) => {
+      state.settings.primaryProvider = e.target.value;
+    });
+
+    container.querySelector('#set-fallback-model')?.addEventListener('change', (e) => {
+      state.settings.fallbackProvider = e.target.value;
+    });
+
+    container.querySelector('#set-auto-fallback')?.addEventListener('change', (e) => {
+      state.settings.autoFallback = e.target.checked;
+    });
+
+    container.querySelector('#set-pers')?.addEventListener('change', (e) => {
+      state.settings.personalization = e.target.checked;
+    });
+
+    container.querySelector('#set-mem-sugg')?.addEventListener('change', (e) => {
+      state.settings.memorySuggestions = e.target.checked;
+    });
+
+    container.querySelector('#set-dryrun')?.addEventListener('change', (e) => {
+      state.settings.dryRun = e.target.checked;
+      state.agent.dryRun = e.target.checked;
+    });
+
+    container.querySelector('#set-notif')?.addEventListener('change', (e) => {
+      state.settings.notifications = e.target.checked;
+    });
+
     container.querySelector('#set-theme')?.addEventListener('change', (e) => {
       const nextTheme = e.target.value;
       state.settings.theme = nextTheme;
-      document.documentElement.setAttribute('data-theme', nextTheme);
+      const effectiveTheme =
+        nextTheme === 'system'
+          ? window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+          : nextTheme;
+      document.documentElement.setAttribute('data-theme', effectiveTheme);
       localStorage.setItem('sahayak_theme', nextTheme);
       // update navbar icon if function exists
       if (typeof window.updateThemeIcon === 'function') {
-        window.updateThemeIcon(nextTheme);
+        window.updateThemeIcon(effectiveTheme);
       }
     });
 
