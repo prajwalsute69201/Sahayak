@@ -113,4 +113,23 @@ describe('Sahayak Landing Page Production & Vercel Readiness', () => {
     expect(Array.isArray(rootParsed.headers)).toBe(true);
     expect(Array.isArray(docsParsed.headers)).toBe(true);
   });
+
+  it('validates direct download button links to release ZIP and assets exist on disk', () => {
+    const zipPath = path.join(docsDir, 'sahayak-v1.0.0.zip');
+    const checksumPath = path.join(docsDir, 'sahayak-v1.0.0.zip.sha256');
+
+    expect(fs.existsSync(zipPath)).toBe(true);
+    expect(fs.statSync(zipPath).size).toBeGreaterThan(500 * 1024); // > 500KB
+    expect(fs.existsSync(checksumPath)).toBe(true);
+
+    const html = fs.readFileSync(path.join(docsDir, 'index.html'), 'utf8');
+    const window = new Window();
+    const document = window.document;
+    document.write(html);
+
+    const downloadBtn = document.getElementById('download-zip-btn');
+    expect(downloadBtn).not.toBeNull();
+    expect(downloadBtn?.getAttribute('href')).toBe('sahayak-v1.0.0.zip');
+    expect(downloadBtn?.getAttribute('download')).toBe('sahayak-v1.0.0.zip');
+  });
 });

@@ -26,6 +26,8 @@ const MIME_TYPES = {
   '.xml': 'application/xml; charset=utf-8',
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
+  '.zip': 'application/zip',
+  '.sha256': 'text/plain; charset=utf-8',
 };
 
 function safeResolve(baseDir, reqPath) {

@@ -79,6 +79,13 @@ export function packageExtension(options = {}) {
   const sha256 = calculateSha256(zipFilePath);
   fs.writeFileSync(checksumFilePath, `${sha256}  ${packageBaseName}.zip\n`, 'utf8');
 
+  // Copy release assets to docs folder for direct website downloads
+  const docsDir = path.resolve('docs');
+  if (fs.existsSync(docsDir)) {
+    fs.copyFileSync(zipFilePath, path.join(docsDir, `${packageBaseName}.zip`));
+    fs.copyFileSync(checksumFilePath, path.join(docsDir, `${packageBaseName}.zip.sha256`));
+  }
+
   // 6. Read manifest summary for report
   const manifest = JSON.parse(fs.readFileSync(path.join(unpackedDir, 'manifest.json'), 'utf8'));
 
